@@ -1,0 +1,46 @@
+using System;
+class HelloWorld
+{
+  static void Main ()
+  {
+
+    Console.Write ("Please enter ticket's price: ");
+    int price = int.Parse (Console.ReadLine ());
+      Console.WriteLine ("------------------------------");
+     int total_tickets=0;
+     int total=0;
+     int seats = 100;
+     
+     start: 
+     int Aseats = seats-total_tickets;
+      Console.WriteLine ("Number of available seats = "+Aseats);
+      Console.Write ("Please enter number of tickets: ");
+    int num = int.Parse (Console.ReadLine ());
+    total_tickets+= num;
+      Console.WriteLine ("Total amount: " + (price * num));
+      total+=(price*num);
+      Console.Write ("Paid or not (y/n)? ");
+    char stat = char.Parse (Console.ReadLine ());
+    if (stat == 'Y' || stat == 'y')
+      {Console.WriteLine("Enjoy your stay! Here are your tickets:");
+	   for (int i = 0; i<num; i++)
+	   {Console.WriteLine("Ticket"+(i+1));}
+	   Console.Write("do you want start new entry? ");
+	   char newz = char.Parse (Console.ReadLine ()); 
+	   if (newz == 'Y' || newz == 'y')
+      {goto start;}
+      else if (newz == 'N' || newz == 'n') 
+    {Console.WriteLine("Total amount = "+total);
+    Console.WriteLine("Available seats= "+Aseats);
+        
+    }
+      }
+    if (stat == 'N' || stat == 'n') 
+    {Console.WriteLine("Cannot watch the movie");
+        goto start;
+    }
+
+
+
+  }
+}
