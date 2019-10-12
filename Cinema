@@ -1,46 +1,160 @@
 using System;
-class HelloWorld
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Cinema
 {
-  static void Main ()
-  {
+    class Program
+    {
+        static void Main(string[] args)
+        {xxx:
+            try
+            {
+                Console.Write("Please enter ticket's price: ");
+                int price = int.Parse(Console.ReadLine());
+                Console.WriteLine("------------------------------");
+                int total_tickets = 0;
+                int total = 0;
+                int intial = 0;
+                int seats = 100;
+                int Aseats = seats - total_tickets;
+            start:
+               
+                 
+                gg:
+                Console.WriteLine("Available seats: " + Aseats);
+                Console.Write("Please enter number of tickets: ");
+                int num = int.Parse(Console.ReadLine());
+                intial++;
+                if (num == 0)
+                {
+                    Console.WriteLine("Zero ticket cannot be reserved. please check your number");
+                    goto gg;
+                }
 
-    Console.Write ("Please enter ticket's price: ");
-    int price = int.Parse (Console.ReadLine ());
-      Console.WriteLine ("------------------------------");
-     int total_tickets=0;
-     int total=0;
-     int seats = 100;
-     
-     start: 
-     int Aseats = seats-total_tickets;
-      Console.WriteLine ("Number of available seats = "+Aseats);
-      Console.Write ("Please enter number of tickets: ");
-    int num = int.Parse (Console.ReadLine ());
-    total_tickets+= num;
-      Console.WriteLine ("Total amount: " + (price * num));
-      total+=(price*num);
-      Console.Write ("Paid or not (y/n)? ");
-    char stat = char.Parse (Console.ReadLine ());
-    if (stat == 'Y' || stat == 'y')
-      {Console.WriteLine("Enjoy your stay! Here are your tickets:");
-	   for (int i = 0; i<num; i++)
-	   {Console.WriteLine("Ticket"+(i+1));}
-	   Console.Write("do you want start new entry? ");
-	   char newz = char.Parse (Console.ReadLine ()); 
-	   if (newz == 'Y' || newz == 'y')
-      {goto start;}
-      else if (newz == 'N' || newz == 'n') 
-    {Console.WriteLine("Total amount = "+total);
-    Console.WriteLine("Available seats= "+Aseats);
-        
+               else if (num == 100 && intial>1)
+                {
+                    Console.WriteLine("The required number is higher than the available seats. Maximum number to be reserved = " +Aseats);
+                    goto gg;   
+                }
+
+               else if (num > 100)
+                {
+                    Console.WriteLine("The required number is higher than the maximum seats in your cinema.");
+                    goto gg;
+                }
+
+                else if (num == 100 && intial == 1)
+                {
+                    total_tickets += num;
+                    Console.WriteLine("Total amount: " + (price * num));
+                    total += (price * num);
+                    Console.Write("Paid or not (y/n)? ");
+                    char statz = char.Parse(Console.ReadLine());
+                    if (statz == 'Y' || statz == 'y')
+                    {
+                        Console.WriteLine("Enjoy your stay! Here are your tickets:");
+                        for (int i = 0; i < num; i++)
+                        Console.WriteLine("Ticket" + (i + total_tickets - num + 1)); 
+                        Console.WriteLine("Cinema is now compelete. No more seats are available.");
+                        Console.WriteLine("Total amount = " + total);
+                        Console.WriteLine("Available seats= " + (seats - total_tickets));
+                        Console.WriteLine("goodbye!");
+                        Console.ReadKey();
+                        Environment.Exit(1);
+
+                    }
+                    else if (statz == 'N' || statz == 'n')
+                    {
+                        Console.WriteLine("Cannot watch the movie");
+                        total_tickets -= num;
+                        total -= (price * num);
+                        Aseats = seats - total_tickets;
+                        goto start;
+                    }
+                }
+                else if (Aseats < num)
+                {
+                    Console.WriteLine("Cannot reservse this amount. Available seats = " +Aseats);
+                    
+                    goto gg;
+                }
+                else if (num < 100) {
+
+                    total_tickets += num;
+                
+                    Aseats = seats - total_tickets;
+                
+              
+                    Console.WriteLine("Total amount: " + (price * num));
+                    total += (price * num);
+                    Console.Write("Paid or not (y/n)? ");
+                    char stat = char.Parse(Console.ReadLine());
+                    if (stat == 'Y' || stat == 'y')
+                    {
+                        
+                        
+                        Console.WriteLine("Enjoy your stay! Here are your tickets:");
+                        for (int i = 0; i < num; i++)
+                        { Console.WriteLine("Ticket" + (i + total_tickets - num + 1)); }
+
+                       
+                        
+                        if (Aseats == 0)
+                        {
+                            Console.WriteLine("The cinema is complete no more seats are available");
+                            Console.WriteLine("Thank you");
+                            Console.WriteLine("Total amount = " + total);
+                            Console.WriteLine("Available seats= " + (seats - total_tickets));
+                            Console.ReadKey();
+                            Environment.Exit(1);
+                        }
+                    }
+                    else if (stat == 'N' || stat == 'n')
+                    {
+                        Console.WriteLine("Cannot watch the movie");
+                        total_tickets -= num;
+                        total -= (price * num);
+                        Aseats = seats - total_tickets;
+                        goto gg;
+                    }
+
+               
+                    
+
+                  
+
+                    else
+                    {
+                        Console.WriteLine("You cannot reserve this amount. The available remaining = " + Aseats);
+                        goto gg;
+                    }
+  
+                        Console.Write("do you want start new entry? ");
+                        char newz = char.Parse(Console.ReadLine());
+                        if (newz == 'Y' || newz == 'y')
+                        { goto gg; }
+                        else if (newz == 'N' || newz == 'n')
+                        {
+                            Console.WriteLine("Total amount = " + total);
+                            Console.WriteLine("Available seats= " + (seats - total_tickets));
+
+                        }
+                   
+                    
+                
+
+                
+                
+                }
+               
+                Console.ReadKey();
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message);
+            goto xxx;
+            }
+        }
     }
-      }
-    if (stat == 'N' || stat == 'n') 
-    {Console.WriteLine("Cannot watch the movie");
-        goto start;
-    }
-
-
-
-  }
 }
