@@ -1,0 +1,42 @@
+using System;
+class HelloWorld {
+  static void Main() {
+      int suma = 0;
+      int average = 0;
+      int max = 0;
+      
+      Console.Write("enter array length: ");
+      int n = int.Parse(Console.ReadLine());
+      string [] std = new string [n];
+      for(int i = 0; i<n;i++)
+      {
+          Console.Write("enter values: "+(i+1));
+          std [i] = Console.ReadLine();
+          suma+=int.Parse(std[i]);
+          average = suma/n ; 
+         if (max<int.Parse(std[i]))
+         {
+             max = int.Parse(std[i]);
+         }
+         
+      }
+      int min=int.Parse(std[0]);
+      for(int j = 0; j<n;j++)
+      {
+      
+      if (min>int.Parse(std[j]))
+         {
+             min = int.Parse(std[j]);
+         }
+      }
+    for(int i = 0; i<n;i++)
+      {
+          Console.WriteLine("enter values - " +(i+1) + ": " +std [i]);
+          
+       }
+       Console.WriteLine("summation = "+ suma);
+       Console.WriteLine("average = "+ average);
+       Console.WriteLine("maximum = "+ max);
+       Console.WriteLine("minimum = "+ min);
+  }
+}
